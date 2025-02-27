@@ -3,23 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flatpickr Time Picker</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <title>Custom Time Picker</title>
 </head>
 <body>
 
-    <h2>Selettore orario con secondi (Flatpickr)</h2>
-    <input type="text" id="timePicker" placeholder="Seleziona un orario">
+    <h2>Seleziona un orario</h2>
+    <select id="hours"></select> :
+    <select id="minutes"></select> :
+    <select id="seconds"></select>
+
+    <p>Orario selezionato: <span id="selectedTime">--:--:--</span></p>
 
     <script>
-        flatpickr("#timePicker", {
-            enableTime: true,        // Attiva il selettore orario
-            noCalendar: true,        // Nessun calendario, solo orario
-            dateFormat: "H:i:S",     // HH:MM:SS
-            time_24hr: true,         // Formato 24 ore
-            enableSeconds: true,     // ATTIVA la selezione dei secondi!
-            secondIncrement: 1       // Incremento dei secondi di 1
+        function populateSelect(id, max) {
+            let select = document.getElementById(id);
+            for (let i = 0; i <= max; i++) {
+                let option = document.createElement("option");
+                option.value = option.textContent = String(i).padStart(2, '0');
+                select.appendChild(option);
+            }
+        }
+
+        populateSelect("hours", 23);
+        populateSelect("minutes", 59);
+        populateSelect("seconds", 59);
+
+        document.querySelectorAll("select").forEach(select => {
+            select.addEventListener("change", () => {
+                document.getElementById("selectedTime").textContent =
+                    `${document.getElementById("hours").value}:` +
+                    `${document.getElementById("minutes").value}:` +
+                    `${document.getElementById("seconds").value}`;
+            });
         });
     </script>
 
