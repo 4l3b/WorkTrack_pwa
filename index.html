@@ -1,42 +1,142 @@
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Time Picker</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Work Time Calculator Launcher</title>
+	<style>
+		body {
+			font-family: 'Courier New', Courier, monospace;
+			background: #4E525A;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			overflow: hidden;
+		}
+		.intro-fmc-screen {
+			width: 397.5px;
+			height: 283px;
+			position: absolute;
+			padding-left: 5px;
+			padding-right: 5px;
+			margin: 0;
+			display: block;
+			text-align: center;
+			border: 3.5px solid #77858C;
+			border-collapse: collapse;
+			box-shadow: 0px 0px 1px #77858C;
+			border-radius: 20px;
+			border-spacing: 0px;
+			background: #010101;
+			overflow: hidden;
+			user-select: none;
+			-webkit-user-select: none;
+			cursor: default;
+		}
+		table.intro-fmc-screen td {
+			font-size: 14.3px;
+			width: 397.5px;
+			font-weight: 100;
+			line-height: 12px;
+			letter-spacing: 1.5px;
+			padding-bottom: 3rem;
+			background: #010101;
+			color: #00FF00;
+			border: 0px solid #00FF00;
+		}
+		.launch-btn {
+			background-color: #010101;
+			color: #00FF00;
+			width: 35px;
+			height: 17px;
+			line-height: 16px;
+			border: 0px solid #00FF00;
+			padding: 0px;
+			cursor: pointer;
+			font-size: 19.3px;
+			font-family: 'Courier New', monospace;
+			font-weight: 100;
+			border-radius: 3px;
+			text-align: center;
+			position: relative;
+			top: 4px;
+		}
+		.launch-btn::before {
+			content: "[ ]";
+			font-size: 19.3px;
+			position: relative;
+			letter-spacing: 0px;
+			top: 3px;
+			left: 0;
+			font-weight: 100;
+		}
+		.launch-btn.active::before {
+			content: "[x]";
+		}
+		button:focus {		/* Rimuovi bordi e illuminazione di input e bottoni su Chrome */
+			outline: none;
+			box-shadow: none;
+		}
+	</style>
 </head>
+
+
 <body>
+    <table class="intro-fmc-screen">
+        <tbody>
+            <tr>
+                <td>
+                    <p style="margin-top: 21px; margin-bottom: 8px; font-size: 20px;">WORK TIME CALCULATOR</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="display: block; font-size: 16.1px;">LAUNCH CALCULATOR</span>
+                    <button class="launch-btn" id="launch-btn"></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-    <h2>Seleziona un orario</h2>
-    <select id="hours"></select> :
-    <select id="minutes"></select> :
-    <select id="seconds"></select>
-
-    <p>Orario selezionato: <span id="selectedTime">--:--:--</span></p>
-
+	
     <script>
-        function populateSelect(id, max) {
-            let select = document.getElementById(id);
-            for (let i = 0; i <= max; i++) {
-                let option = document.createElement("option");
-                option.value = option.textContent = String(i).padStart(2, '0');
-                select.appendChild(option);
+        function apriFinestra() {
+            let screenWidth = window.screen.width;
+            let screenHeight = window.screen.height;
+
+            let popupWidth = 459;
+            let popupHeight = 354;
+
+            // Se il browser è Chrome, adatta le dimensioni per compensare la mancanza della barra degli indirizzi
+            let isChrome = /Chrome/.test(navigator.userAgent);
+            if (isChrome) {
+                popupWidth -= 11;
+                popupHeight -= 40.5;
             }
+
+            // Popup in basso a destra
+            let left = screenWidth - popupWidth;
+            let top = screenHeight - popupHeight;
+
+            // Apri la finestra del pop-up con le dimensioni calcolate
+            window.open(
+                'v4_WorkTimeCalculator_iOS.html',
+                'calcolatore',
+                `width=${popupWidth},height=${popupHeight},left=${left},top=${top},menubar=no,toolbar=no,scrollbars=no,resizable=no`
+            );
         }
 
-        populateSelect("hours", 23);
-        populateSelect("minutes", 59);
-        populateSelect("seconds", 59);
-
-        document.querySelectorAll("select").forEach(select => {
-            select.addEventListener("change", () => {
-                document.getElementById("selectedTime").textContent =
-                    `${document.getElementById("hours").value}:` +
-                    `${document.getElementById("minutes").value}:` +
-                    `${document.getElementById("seconds").value}`;
-            });
+        document.getElementById('launch-btn').addEventListener('click', function() {
+            setTimeout(apriFinestra, 480);
+            this.classList.add('active'); // Aggiungi la classe "active" per mostrare la X
+            // Imposta un timeout per rimuovere la "X"
+            setTimeout(() => {
+                this.classList.remove('active');
+            }, 460);
         });
     </script>
-
 </body>
 </html>
