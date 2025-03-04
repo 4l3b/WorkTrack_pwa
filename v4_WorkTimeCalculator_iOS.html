@@ -229,8 +229,7 @@
 		.clr-btn,
 		.stp-btn,
 		.getlogs-btn,
-		.clearlogs-btn,
-		.save-btn {
+		.clearlogs-btn {
 			background-color: #010101;
 			color: #00FF00;
 			width: 35px;
@@ -246,10 +245,6 @@
 			text-align: center;
 			position: relative;
 			top: 0;
-		}
-		
-		.save-btn {
-			left: 0.05rem;
 		}
 
 		.clr-btn,
@@ -271,8 +266,7 @@
 		.clr-btn::before,
 		.stp-btn::before,
 		.getlogs-btn::before,
-		.clearlogs-btn::before,
-		.save-btn::before {
+		.clearlogs-btn::before {
 			content: "[ ]";
 			font-size: 19.3px;
 			position: relative;
@@ -285,8 +279,7 @@
 		.clr-btn.active::before,
 		.stp-btn.active::before,
 		.getlogs-btn.active::before,
-		.clearlogs-btn.active::before,
-		.save-btn.active::before {
+		.clearlogs-btn.active::before {
 			content: "[x]";	/* Quando il bottone è attivo, mostra la X tra parentesi */
 		}
 
@@ -325,23 +318,6 @@
 		
 		.breakmin-btn-popup {
 			width: 70px;
-		}
-
-		/* Personalizza span Save Button */
-		.save-span {
-			margin-top: 0.42rem;
-			margin-bottom: 0;
-			margin-right: 0;
-			margin-left: 8.4rem;
-			font-size: 14.3px;
-			font-weight: 100;
-			color: #00FF00;
-			line-height: 13.7px;
-			letter-spacing: 1px;
-			padding: 0;
-			display: block;
-			position: absolute;
-			z-index: 3 !important;
 		}
 
 		/* Rimuovi l'icona dell'orologio nei campi di input di tipo time */
@@ -1594,11 +1570,8 @@
 			    }
 			});
 
-			// Mostra bottone per il salvataggio dei dati sessione
-			const saveBtn = document.getElementById('save-btn');
-			const saveSpan = document.querySelector('.save-span');
-			saveSpan.style.display = "block";
-			saveBtn.style.display = "block";
+			// Chiedi di salvare i dati sessione
+			saveData();
 			
 			// Ferma l'allarme
 			var alarmSound = document.getElementById('alarm-sound');
@@ -1644,20 +1617,6 @@
             }
     		window.resizeTo(desiredWidth, desiredHeight);
 		}
-		
-		// Aggiungi evento al bottone "Save"
-		document.getElementById('save-btn').addEventListener('click', function() {
-			// Aggiungi la classe "active" per mostrare la X
-			this.classList.add('active');
-		
-			// Imposta un timeout per rimuovere la "X"
-			setTimeout(() => {
-				this.classList.remove('active');
-			}, 460);
-			
-			// Chiamata alla funzione save (con ritardo)
-			setTimeout(() => saveData(), 480);
-		});
 		
 		
 		
