@@ -2048,9 +2048,11 @@
 
 		document.getElementById("worktime-btn-popup").addEventListener("click", function() {
     setTimeout(() => {
-        document.getElementById("hours-worktime").focus();
-    }, 10); // Aspetta un attimo per assicurarsi che il popup sia visibile
-    });
+        let input = document.getElementById("hours-worktime");
+        input.focus();
+        input.dispatchEvent(new Event('touchstart', { bubbles: true }));
+    }, 300);
+});
 		
 	</script>
 
