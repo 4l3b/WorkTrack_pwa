@@ -2039,7 +2039,11 @@
 		});
 
 		document.addEventListener('focusout', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+        if (!document.activeElement || document.activeElement.tagName === 'BODY') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }, 100); // Aspetta un attimo per evitare falsi positivi
     });
 		
 	</script>
