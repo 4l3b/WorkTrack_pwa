@@ -2045,6 +2045,12 @@
         }
     }, 10); // Aspetta un attimo per evitare falsi positivi
     });
+
+		document.getElementById("popup-worktime").addEventListener("click", function() {
+    setTimeout(() => {
+        document.getElementById("hours-worktime").focus();
+    }, 10); // Aspetta un attimo per assicurarsi che il popup sia visibile
+    });
 		
 	</script>
 
