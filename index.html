@@ -739,9 +739,38 @@
 				}, 460);
 			});
 		});
+
+
 		
+		//*****************************************************GENERA ALLARME**************************************************
 		// Imposta allarme sonoro su nullo di default
 		var alarmInterval = null;
+		
+		function playAlarm() {
+		    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+		
+		    function playBeep(startTime) {
+		        const osc = audioCtx.createOscillator();
+		        const gainNode = audioCtx.createGain();
+		        osc.type = "sawtooth"; // Tipo di onda per avvicinarsi al suono originale
+		        osc.frequency.setValueAtTime(2050, audioCtx.currentTime); // Frequenza del beep
+		        // Inviluppo del volume per un suono più naturale
+		        gainNode.gain.setValueAtTime(0, startTime);
+		        gainNode.gain.linearRampToValueAtTime(0.05, startTime); // Attack rapido
+		        gainNode.gain.linearRampToValueAtTime(0, startTime + 0.10); // Release veloce
+		        osc.connect(gainNode);
+		        gainNode.connect(audioCtx.destination);
+		        osc.start(startTime);
+		        osc.stop(startTime + 0.12); // Durata di ogni beep
+		    }
+		
+		    // Sequenza dei beep
+		    const startTime = audioCtx.currentTime;
+		    playBeep(startTime + 0.12);
+		    playBeep(startTime + 0.24);
+		    playBeep(startTime + 0.36);
+		    playBeep(startTime + 0.48);
+		}
 
 
 
@@ -1348,7 +1377,7 @@
 				if (alarmInterval === null) { // Evita di creare più intervalli sovrapposti
 					alarmSound.play();
 					alarmInterval = setInterval(function() {
-						alarmSound.play();
+						playAlarm();
 					}, 2500);
 				}
 				
