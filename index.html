@@ -2065,7 +2065,6 @@ function startPressTimer() {
         longPressActivated = true; // Flag per indicare che è stato un long press
         console.log("Long press attivato: apro il file picker!");
         fileInput.click(); // Dopo 3s apre direttamente il selettore file
-        this.classList.remove('active'); // Rimuove la classe "active" della X
     }, 3000);
 }
 
@@ -2076,20 +2075,30 @@ function cancelPressTimer() {
 
 // Eventi per desktop (mouse)
 externalButton.addEventListener("mousedown", startPressTimer);
-externalButton.addEventListener("mouseup", cancelPressTimer);
+
+// Se viene rilasciato il pulsante prima di 3 secondi
+externalButton.addEventListener("mouseup", () => {
+    cancelPressTimer(); // Annulla il timer
+    if (!longPressActivated) {
+        console.log("Click breve: simulo il click sul getlogs-btn!");
+        hiddenButton.click(); // Simula il click sul tasto nascosto
+    }
+});
+
+// Se l'utente lascia il mouse o il tocco prima di 3 secondi
 externalButton.addEventListener("mouseleave", cancelPressTimer);
 
 // Eventi per mobile (touch)
 externalButton.addEventListener("touchstart", startPressTimer);
+
 externalButton.addEventListener("touchend", () => {
-    cancelPressTimer();
-    setTimeout(() => {
-        if (!longPressActivated) {
-            console.log("Click breve: simulo il click sul getlogs-btn!");
-            hiddenButton.click(); // Simula il click sul tasto nascosto
-        }
-    }, 10);
+    cancelPressTimer(); // Annulla il timer
+    if (!longPressActivated) {
+        console.log("Click breve: simulo il click sul getlogs-btn!");
+        hiddenButton.click(); // Simula il click sul tasto nascosto
+    }
 });
+
 externalButton.addEventListener("touchcancel", cancelPressTimer);
 
 // Se viene cliccato normalmente (mouse), simula il click sul bottone nascosto
