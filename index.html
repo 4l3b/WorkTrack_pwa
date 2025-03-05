@@ -629,8 +629,6 @@
 					<td>
 						<span style="margin-top: 2px; display: block; margin-bottom: 0.3rem;">END</span>
 						<button class="stp-btn" id="stp-btn"></button>
-						<span class="save-span" style="display: none;">SAVE <br>
-							<button class="save-btn" id="save-btn"></button>
 						</span>
 					</td>
 					<td>
@@ -1435,12 +1433,6 @@
 		
 			var clockOutElement = document.getElementById('clock-out');
 			clockOutElement.innerHTML = "<span style='font-size: 14.3px;'>CLOCK OUT</span> <br>--<span style='letter-spacing: 0px;'>:</span>--<span style='letter-spacing: 0px;'>:</span>--";
-		
-			// Assicurati che il bottone di salvataggio sia nascosto
-			const saveBtn = document.getElementById('save-btn');
-			const saveSpan = document.querySelector('.save-span');
-			saveBtn.style.display = "none";
-			saveSpan.style.display = "none";
 		
 			// Ferma l'allarme
 			var alarmSound = document.getElementById('alarm-sound');
