@@ -1999,41 +1999,42 @@
 		
 		// Funzione per generare e scaricare un file JSON con i dati presenti nel Local Storage
 		function generateJSON() {
-			// Carica il JSON esistente
-			const allData = loadExistingLOG();
-		
-			// Converte i dati in una stringa JSON
-			const jsonData = JSON.stringify(allData, null, 2);
-		
-			// Crea un Blob con i dati JSON
-			const blob = new Blob([jsonData], {
-				type: 'application/json'
-			});
-		
-			// Crea un link per scaricare il file JSON
-			const link = document.createElement('a');
-			link.href = URL.createObjectURL(blob);
-			link.download = 'timeLog.json'; // Nome del file JSON
-			// Ritarda l'esecuzione del download
-			setTimeout(() => {
-				link.click();
-			}, 480);
-		}
-		
-		// Aggiunge evento al bottone "getlogs-btn"
-		document.getElementById('getlogs-btn').addEventListener('click', function() {
-			generateJSON(); // Chiamata alla funzione generateJSON
-		
-			this.classList.add('active'); // Aggiunge la classe "active" per mostrare la X
-		
-			// Imposta un timeout per rimuovere la "X"
-			setTimeout(() => {
-				this.classList.remove('active');
-			}, 460);
-		});
-		
-		// Attiva getlogs-btn premendo getlogs-btn-external (il tasto esterno)
-		function loadLogs() {
+    // Carica il JSON esistente
+    const allData = loadExistingLOG();
+
+    // Converte i dati in una stringa JSON
+    const jsonData = JSON.stringify(allData, null, 2);
+
+    // Crea un Blob con i dati JSON
+    const blob = new Blob([jsonData], {
+        type: 'application/json'
+    });
+
+    // Crea un link per scaricare il file JSON
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'timeLog.json'; // Nome del file JSON
+
+    // Ritarda l'esecuzione del download
+    setTimeout(() => {
+        link.click();
+    }, 480);
+}
+
+// Aggiunge evento al bottone "getlogs-btn"
+document.getElementById('getlogs-btn').addEventListener('click', function() {
+    generateJSON(); // Chiamata alla funzione generateJSON
+
+    this.classList.add('active'); // Aggiunge la classe "active" per mostrare la X
+
+    // Imposta un timeout per rimuovere la "X"
+    setTimeout(() => {
+        this.classList.remove('active');
+    }, 460);
+});
+
+// Attiva getlogs-btn premendo getlogs-btn-external (il tasto esterno)
+function loadLogs() {
     const file = fileInput.files[0]; // Prende il primo file selezionato
     if (!file) return;
 
@@ -2050,7 +2051,7 @@
     };
     reader.readAsText(file);
 }
-		
+
 let pressTimer;
 let longPressActivated = false;
 const externalButton = document.getElementById("getlogs-btn-external");
@@ -2064,6 +2065,7 @@ function startPressTimer() {
         longPressActivated = true; // Flag per indicare che è stato un long press
         console.log("Long press attivato: apro il file picker!");
         fileInput.click(); // Dopo 3s apre direttamente il selettore file
+        this.classList.remove('active'); // Rimuove la classe "active" della X
     }, 3000);
 }
 
