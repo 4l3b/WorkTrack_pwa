@@ -2102,8 +2102,12 @@ externalButton.addEventListener("click", () => {
 
 // Carica il file quando viene selezionato
 fileInput.addEventListener("change", (event) => {
-    console.log("File selezionato:", event.target.files[0].name);
-    loadLogs();
+    if (event.target.files.length > 0) {
+        console.log("File selezionato:", event.target.files[0].name);
+        loadLogs();  // Assicurati che questa funzione gestisca il caricamento correttamente
+    } else {
+        console.log("Nessun file selezionato.");
+    }
 });
 		
 		
