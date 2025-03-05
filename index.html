@@ -16,7 +16,7 @@
 	<!-- Link al manifest -->
 	<link rel="manifest" href="manifest.json">
 
-	<title>Work Time Calculator</title>
+	<title>WorkTrack</title>
 	
 	<style>
 		body {
@@ -535,7 +535,7 @@
 				<tr>
 					<td></td>
 					<td colspan="2" style="text-align: center; vertical-align: middle; font-size: 20px;">
-						<p style='margin-bottom: 5%;'>WORK TIME CALCULATOR</p>
+						<p style='margin-bottom: 5%;'>WORKTRACK</p>
 					</td>
 					<td></td>
 				</tr>
@@ -707,7 +707,7 @@
 			//*****************************************************PWA**************************************************
 		  if ('serviceWorker' in navigator) {
 		    window.addEventListener('load', () => {
-		      navigator.serviceWorker.register('/service-worker.js')
+		      navigator.serviceWorker.register('/workTimeCalculator_iOS/service-worker.js')
 		        .then((registration) => {
 		          console.log('Service Worker registrato con successo:', registration);
 		        })
