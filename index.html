@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
 	<base href="/workTimeCalculator_iOS/">
 	<meta charset="UTF-8">
@@ -195,7 +195,7 @@
 			margin-top: 1px;
 			margin-bottom: -2px;
 			margin-left: 0px;
-			margin-right: -1px;
+			margin-right: -0.2rem;
 			letter-spacing: 0.7px;
 			width: 4.4rem;
 			height: 18px;
@@ -218,15 +218,6 @@
 		.textinputs::placeholder {
 		  color: #00FF00;
 		}
-		
-		.datetime-container {
-		    display: flex;
-		    margin-right: -0.68rem;
-		    margin-left: 0;
-		    padding: 0;
-		    gap: 0.5rem;  /* Imposta la distanza tra gli input data e ora */
-		    border: 0px solid #00FF00;
-		}
 
 		#date, #timenow {
 			pointer-events: none;	/* Nascondi la possibilità di cliccare sul campo data e ora*/
@@ -236,7 +227,9 @@
 		
 		#date {
 			letter-spacing: 0.4px;
-			text-align: right;
+			padding: 0;
+			margin-left: -0.05rem;
+			text-align: left;
 		}
 
 		/* Personalizza bottoni schermo*/
@@ -267,13 +260,10 @@
 			pointer-events: none;	/* Disabilita l'interazione diretta con il bottone (per usare il bottone al lato) */
 		}
 
-		.getlogs-btn {
+		.getlogs-btn,
+		.clearlogs-btn {
 			margin-right: -2px;
 			pointer-events: none;
-		}
-
-		.clearlogs-btn {
-			right: -2px;
 		}
 
 		/* Cambia la dimensione del contenuto per farlo corrispondere meglio */
@@ -457,7 +447,8 @@
 			margin-top: 1.35rem;
 		}
 		
-		.clr-btn-external {
+		.clr-btn-external,
+		.clearlogs-btn-external {
 			margin-top: 1.3rem;
 		}
 
@@ -469,7 +460,11 @@
 			margin-top: 1.4rem;
 		}
 
-		.datetime-btn {
+		.time-btn {
+			margin-top: 1.35rem;
+		}
+		
+		.date-btn {
 			margin-top: 1.35rem;
 		}
 		
@@ -605,6 +600,22 @@
 				</tr>
 				<tr>
 					<td>
+						<button class="external-btns date-btn" id="date-btn"></button>
+					</td>
+					<td>
+						<span style="display: block; margin-bottom: 0.3rem;">DATE</span>
+							<input type="text" class="textdatetime" id="date" name="date">
+					</td>
+					<td>
+						<span style="display: block; margin-bottom: 0.3rem;">TIME</span>
+							<input type="text" class="textdatetime" id="timenow" name="timenow">
+					</td>
+					<td>
+						<button class="external-btns time-btn" id="time-btn"></button>
+					</td>
+				</tr>
+				<tr>
+					<td>
 						<button class="external-btns clr-btn-external" id="clr-btn-external"></button>
 					</td>
 					<td>
@@ -612,14 +623,11 @@
 						<button class="clr-btn" id="clr-btn"></button>
 					</td>
 					<td>
-						<span style="display: block; margin-bottom: 0.3rem;">DATETIME</span>
-						<div class="datetime-container">
-							<input type="text" class="textdatetime" id="date" name="date">
-							<input type="text" class="textdatetime" id="timenow" name="timenow">
-						</div>
+						<span style="display: block; margin-bottom: 0.3rem;">LOGDEL</span>
+						<button class="clearlogs-btn" id="clearlogs-btn"></button>
 					</td>
 					<td>
-						<button class="external-btns datetime-btn" id="datetime-btn"></button>
+						<button class="external-btns clearlogs-btn-external" id="clearlogs-btn-external"></button>
 					</td>
 				</tr>
 				<tr>
@@ -632,9 +640,7 @@
 						</span>
 					</td>
 					<td>
-						<span style="margin-top: 2px; display: block; margin-bottom: 0.3rem;">LOGDEL/GETLOG</span>
-						<button class="clearlogs-btn" id="clearlogs-btn"></button>
-						<span style="font-size: 22.1px; position: relative; margin-right: -17px; margin-left: -8px; top: 2.25px;"> / </span>
+						<span style="margin-top: 2px; display: block; margin-bottom: 0.3rem;">GETLOG</span>
 						<button class="getlogs-btn" id="getlogs-btn"></button>
 					</td>
 					<td>
@@ -893,7 +899,7 @@
 		// Funzione per chiudere il popup e aggiornare l'input
 		function closePopup(inputField, popup, hoursInput, minutesInput, secondsInput) {
 		    // Verifica che i valori siano validi
-		    validateTime(hoursInput, 0, 24);
+		    validateTime(hoursInput, 0, 23);
 		    validateTime(minutesInput, 0, 59);
 		    validateTime(secondsInput, 0, 59);
 		    
@@ -904,7 +910,7 @@
 		
 		function closePopupBreakMin(inputField, popup, hoursInput, minutesInput) {
 		    // Verifica che i valori siano validi
-		    validateTime(hoursInput, 0, 24);
+		    validateTime(hoursInput, 0, 23);
 		    validateTime(minutesInput, 0, 59);
 		    
 		    // Imposta il valore del campo input principale nel formato HH:MM:SS
@@ -1611,7 +1617,7 @@
 
 
 
-		//*****************************************************SAVE BUTTON*****************************************************
+		//*****************************************************SAVE *****************************************************
 		// Funzione per salvare i dati nel localStorage
 		function saveData() {
 			const confirmSave = confirm("Do you want to save the session data in the time log?");
@@ -2063,6 +2069,11 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }, 10); // Aspetta un attimo per evitare falsi positivi
+    });
+    
+    // Attiva clearlogs-btn premendo clearlogs-btn-external (il tasto esterno)
+    document.getElementById('clearlogs-btn-external').addEventListener('click', function() {
+    	document.getElementById('clearlogs-btn').click();
     });
 		
 	</script>
