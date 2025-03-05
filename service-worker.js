@@ -2,9 +2,9 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open('my-cache').then((cache) => {
       return cache.addAll([
-        '/index.html',
-        '/manifest.json',
-        '/alarm.mp3'
+        '/prova_iOS/index.html',
+        '/prova_iOS/manifest.json',
+        '/prova_iOS/alarm.mp3'
       ]);
     })
   );
