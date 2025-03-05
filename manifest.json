@@ -2,7 +2,7 @@
   "name": "Work Time Calculator",
   "short_name": "Work Time Calculator",
   "description": "A tool to calculate Clock Out and Time Left",
-  "start_url": "/index.html",
+  "start_url": "/prova_iOS/index.html",
   "display": "standalone",
   "background_color": "#010101",
   "theme_color": "#009900",
