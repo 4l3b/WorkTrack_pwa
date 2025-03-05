@@ -651,6 +651,7 @@
 					</td>
 					<td>
 						<button class="external-btns getlogs-btn-external" id="getlogs-btn-external"></button>
+						<input type="file" id="fileInput" accept="application/json" style="display: none;">
 					</td>
 				</tr>
 				<tr>
@@ -2032,9 +2033,42 @@
 		});
 		
 		// Attiva getlogs-btn premendo getlogs-btn-external (il tasto esterno)
-		document.getElementById('getlogs-btn-external').addEventListener('click', function() {
-			document.getElementById('getlogs-btn').click();
-		});
+let pressTimer;
+const externalButton = document.getElementById("getlogs-btn-external");
+const hiddenButton = document.getElementById("getlogs-btn");
+const fileInput = document.getElementById("fileInput");
+
+// Avvia il timer quando il pulsante esterno viene premuto o toccato
+function startPressTimer() {
+    pressTimer = setTimeout(() => {
+        fileInput.click(); // Dopo 3s apre direttamente il selettore file
+    }, 3000);
+}
+
+// Annulla il timer se l'utente rilascia prima di 3s
+function cancelPressTimer() {
+    clearTimeout(pressTimer);
+}
+
+// Eventi per desktop (mouse)
+externalButton.addEventListener("mousedown", startPressTimer);
+externalButton.addEventListener("mouseup", cancelPressTimer);
+externalButton.addEventListener("mouseleave", cancelPressTimer);
+
+// Eventi per mobile (touch)
+externalButton.addEventListener("touchstart", startPressTimer);
+externalButton.addEventListener("touchend", cancelPressTimer);
+externalButton.addEventListener("touchcancel", cancelPressTimer);
+
+// Se viene premuto normalmente, attiva il bottone nascosto
+externalButton.addEventListener("click", () => {
+    setTimeout(() => {
+        if (!pressTimer) hiddenButton.click();
+    }, 10);
+});
+
+// Carica il file quando viene selezionato
+fileInput.addEventListener("change", loadLogs);
 		
 		
 		
