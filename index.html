@@ -651,6 +651,7 @@
 					</td>
 					<td>
 						<button class="external-btns getlogs-btn-external" id="getlogs-btn-external"></button>
+						<input type="file" id="fileInput" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; display: none;" accept=".json" />
 					</td>
 				</tr>
 				<tr>
@@ -2045,82 +2046,47 @@
 			}, 480);
 		}
 		
-		// Setup for the button with both functionalities
-		let touchTimer; // To track how long the button is held
-		let isHolding = false; // To track if the button is being held
+		// Setup per tracciare quanto tempo il bottone viene tenuto premuto
+		let touchTimer; // Timer per tracciare quanto a lungo il bottone è tenuto premuto
+		let isHolding = false; // Stato che indica se il bottone è tenuto premuto
 		
-		// Add file input for uploading the logs
-		const fileInput = document.createElement('input');
-		fileInput.type = 'file';
-		fileInput.style.display = 'none';
-		fileInput.accept = '.json'; // Accept only .json files
-		document.body.appendChild(fileInput);
-		
-		// Event listener for file selection (uploading logs)
-		fileInput.addEventListener('change', loadJSONFile);
-		
-		// Detects whether touch events or mouse events should be used based on the device
-		const isTouchDevice = 'ontouchstart' in window || navigator.msMaxTouchPoints > 0;
-		
+		// Seleziona il bottone e l'input file invisibile
 		const getlogsBtnExternal = document.getElementById('getlogs-btn-external');
+		const fileInput = document.getElementById('fileInput');
 		
-		// For touchscreen devices (iOS, Android)
-		if (isTouchDevice) {
-		    getlogsBtnExternal.addEventListener('touchstart', function() {
-		        isHolding = false; // Reset state
-		        touchTimer = setTimeout(function() {
-		            isHolding = true; // Mark as holding after 3 seconds
-		        }, 3000); // 3000 ms = 3 seconds
-		    });
+		// Aggiungi l'event listener per touchstart (per dispositivi touchscreen)
+		getlogsBtnExternal.addEventListener('touchstart', function() {
+		    isHolding = false; // Resetta lo stato
+		    touchTimer = setTimeout(function() {
+		        isHolding = true; // Se viene tenuto premuto per più di 3 secondi
+		        fileInput.style.display = 'block'; // Rende l'input file visibile per l'upload
+		    }, 3000); // 3000 ms = 3 secondi
+		});
 		
-		    getlogsBtnExternal.addEventListener('touchend', function() {
-		        clearTimeout(touchTimer); // Clear the timeout
+		// Aggiungi l'event listener per touchend (per dispositivi touchscreen)
+		getlogsBtnExternal.addEventListener('touchend', function() {
+		    clearTimeout(touchTimer); // Cancella il timer se il tocco è breve
 		
-		        if (!isHolding) {
-		            // Short tap, trigger the download
-		            generateJSON();
+		    if (!isHolding) {
+		        // Se il bottone è stato solo toccato brevemente (non tenuto premuto)
+		        generateJSON(); // Avvia il download del file JSON
 		
-		            // Add the "active" class to getlogs-btn (not getlogs-btn-external)
-		            const getlogsBtn = document.getElementById('getlogs-btn');
-		            getlogsBtn.classList.add('active'); // This shows the "X"
-		            setTimeout(() => {
-		                getlogsBtn.classList.remove('active');
-		            }, 460);
-		        } else {
-		            // Long press (held for more than 3 seconds), trigger file upload
-		            fileInput.click();
-		        }
-		    });
-		}
-		// For mouse events (desktop)
-		else {
-		    getlogsBtnExternal.addEventListener('mousedown', function() {
-		        isHolding = false; // Reset the state
-		        touchTimer = setTimeout(function() {
-		            isHolding = true; // Mark as holding after 3 seconds
-		        }, 3000); // 3000 ms = 3 seconds
-		    });
+		        // Aggiungi la classe "active" al bottone getlogs-btn
+		        const getlogsBtn = document.getElementById('getlogs-btn');
+		        getlogsBtn.classList.add('active'); // Mostra la "X"
+		        
+		        setTimeout(() => {
+		            getlogsBtn.classList.remove('active'); // Rimuove la "X" dopo 460ms
+		        }, 460);
+		    } else {
+		        // Se il bottone è stato tenuto premuto per più di 3 secondi
+		        fileInput.click(); // Triggers file input per caricare il file
+		    }
+		});
 		
-		    getlogsBtnExternal.addEventListener('mouseup', function() {
-		        clearTimeout(touchTimer); // Clear the timeout
-		
-		        if (!isHolding) {
-		            // Short click, trigger the download
-		            generateJSON();
-		
-		            // Add the "active" class to getlogs-btn (not getlogs-btn-external)
-		            const getlogsBtn = document.getElementById('getlogs-btn');
-		            getlogsBtn.classList.add('active'); // This shows the "X"
-		            setTimeout(() => {
-		                getlogsBtn.classList.remove('active');
-		            }, 460);
-		        } else {
-		            // Long press (held for more than 3 seconds), trigger file upload
-		            fileInput.click();
-		        }
-		    });
-		}
-		
+		// Aggiungi l'event listener per il cambiamento del file (upload)
+		fileInput.addEventListener('change', loadJSONFile);
+				
 		
 		
 		//************************************************EMPTY LOG IN LOCAL STORAGE******************************************
