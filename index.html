@@ -242,8 +242,7 @@
 		.clr-btn,
 		.stp-btn,
 		.getlogs-btn,
-		.clearlogs-btn,
-		.loadlogs-btn {
+		.clearlogs-btn {
 			background-color: #010101;
 			color: #00FF00;
 			width: 35px;
@@ -272,17 +271,12 @@
 			margin-right: -2px;
 			pointer-events: none;
 		}
-		
-		.loadlogs-btn {
-			margin-right: -2px;
-		}
 
 		/* Cambia la dimensione del contenuto per farlo corrispondere meglio */
 		.clr-btn::before,
 		.stp-btn::before,
 		.getlogs-btn::before,
-		.clearlogs-btn::before,
-		.loadlogs-btn::before {
+		.clearlogs-btn::before {
 			content: "[ ]";
 			font-size: 19.3px;
 			position: relative;
@@ -295,8 +289,7 @@
 		.clr-btn.active::before,
 		.stp-btn.active::before,
 		.getlogs-btn.active::before,
-		.clearlogs-btn.active::before,
-		.loadlogs-btn.active::before {
+		.clearlogs-btn.active::before {
 			content: "[x]";	/* Quando il bottone è attivo, mostra la X tra parentesi */
 		}
 
@@ -653,9 +646,7 @@
 						</span>
 					</td>
 					<td>
-						<span style="margin-top: 2px; display: block; margin-bottom: 0.3rem;">LOADLOG/GETLOG</span>
-						<button class="loadlogs-btn" id="loadlogs-btn"></button>
-						<span style="font-size: 22.1px; position: relative; margin-right: -17px; margin-left: -8px; top: 2.25px;"> / </span>
+						<span style="margin-top: 2px; display: block; margin-bottom: 0.3rem;">GETLOG</span>
 						<button class="getlogs-btn" id="getlogs-btn"></button>
 					</td>
 					<td>
@@ -2005,6 +1996,32 @@
 		}
 
 		
+		// Funzione per caricare un file JSON e inserirlo nel Local Storage
+		function loadJSONFile(event) {
+		    const file = event.target.files[0]; // Ottieni il primo file selezionato
+		
+		    if (file && file.name.endsWith('.json')) {
+		        const reader = new FileReader();
+		
+		        // Leggi il file JSON
+		        reader.onload = function(e) {
+		            try {
+		                const jsonData = JSON.parse(e.target.result); // Parsea il contenuto del file JSON
+		                // Salva nel Local Storage
+		                localStorage.setItem('timeLog', JSON.stringify(jsonData));
+		                alert("Log caricato con successo!");
+		            } catch (error) {
+		                alert("Errore nel parsing del file JSON.");
+		            }
+		        };
+		
+		        reader.readAsText(file); // Legge il contenuto del file come testo
+		    } else {
+		        alert("Per favore, carica un file JSON valido.");
+		    }
+		}
+		
+		
 		// Funzione per generare e scaricare un file JSON con i dati presenti nel Local Storage
 		function generateJSON() {
 			// Carica il JSON esistente
@@ -2028,22 +2045,51 @@
 			}, 480);
 		}
 		
-		// Aggiunge evento al bottone "getlogs-btn"
-		document.getElementById('getlogs-btn').addEventListener('click', function() {
-			generateJSON(); // Chiamata alla funzione generateJSON
+		// Setup for the button with both functionalities
+		let touchTimer; // To track how long the button is held
+		let isHolding = false; // To track if the button is being held
 		
-			this.classList.add('active'); // Aggiunge la classe "active" per mostrare la X
-		
-			// Imposta un timeout per rimuovere la "X"
-			setTimeout(() => {
-				this.classList.remove('active');
-			}, 460);
+		// Event listener for touchstart (on mobile devices) - this replaces mousedown
+		document.getElementById('getlogs-btn-external').addEventListener('touchstart', function() {
+		    // Start the timer when the touch is pressed
+		    isHolding = false; // Reset the state
+		    touchTimer = setTimeout(function() {
+		        isHolding = true; // Mark the button as held after 3 seconds
+		        // Optionally add an "active" state to the external button
+		    }.bind(this), 3000); // 3000 ms = 3 seconds
 		});
 		
-		// Attiva getlogs-btn premendo getlogs-btn-external (il tasto esterno)
-		document.getElementById('getlogs-btn-external').addEventListener('click', function() {
-			document.getElementById('getlogs-btn').click();
+		// Event listener for touchend (on mobile devices) - this replaces mouseup
+		document.getElementById('getlogs-btn-external').addEventListener('touchend', function() {
+		    // Stop the timer when the touch is released
+		    clearTimeout(touchTimer);
+		    if (!isHolding) {
+		        // If the button was tapped (not held), trigger the download (generateJSON)
+		        generateJSON();
+		        
+		        // Add the "active" class to getlogs-btn (not getlogs-btn-external)
+		        const getlogsBtn = document.getElementById('getlogs-btn');
+		        getlogsBtn.classList.add('active'); // This shows the "X"
+		
+		        // Remove the "active" class after 460ms
+		        setTimeout(() => {
+		            getlogsBtn.classList.remove('active');
+		        }, 460);
+		    } else {
+		        // Trigger file input for uploading logs if held for more than 3 seconds
+		        fileInput.click();
+		    }
 		});
+		
+		// Add file input for uploading the logs
+		const fileInput = document.createElement('input');
+		fileInput.type = 'file';
+		fileInput.style.display = 'none';
+		fileInput.accept = '.json'; // Accept only .json files
+		document.body.appendChild(fileInput);
+		
+		// Event listener for file selection (uploading logs)
+		fileInput.addEventListener('change', loadJSONFile);
 		
 		
 		
