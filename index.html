@@ -242,7 +242,8 @@
 		.clr-btn,
 		.stp-btn,
 		.getlogs-btn,
-		.clearlogs-btn {
+		.clearlogs-btn,
+		.loadlogs-btn {
 			background-color: #010101;
 			color: #00FF00;
 			width: 35px;
@@ -271,12 +272,17 @@
 			margin-right: -2px;
 			pointer-events: none;
 		}
+		
+		.loadlogs-btn {
+			margin-right: -2px;
+		}
 
 		/* Cambia la dimensione del contenuto per farlo corrispondere meglio */
 		.clr-btn::before,
 		.stp-btn::before,
 		.getlogs-btn::before,
-		.clearlogs-btn::before {
+		.clearlogs-btn::before,
+		.loadlogs-btn::before {
 			content: "[ ]";
 			font-size: 19.3px;
 			position: relative;
@@ -289,7 +295,8 @@
 		.clr-btn.active::before,
 		.stp-btn.active::before,
 		.getlogs-btn.active::before,
-		.clearlogs-btn.active::before {
+		.clearlogs-btn.active::before,
+		.loadlogs-btn.active::before {
 			content: "[x]";	/* Quando il bottone è attivo, mostra la X tra parentesi */
 		}
 
@@ -646,7 +653,9 @@
 						</span>
 					</td>
 					<td>
-						<span style="margin-top: 2px; display: block; margin-bottom: 0.3rem;">GETLOG</span>
+						<span style="margin-top: 2px; display: block; margin-bottom: 0.3rem;">LOADLOG/GETLOG</span>
+						<button class="loadlogs-btn" id="loadlogs-btn"></button>
+						<span style="font-size: 22.1px; position: relative; margin-right: -17px; margin-left: -8px; top: 2.25px;"> / </span>
 						<button class="getlogs-btn" id="getlogs-btn"></button>
 					</td>
 					<td>
@@ -1998,45 +2007,44 @@
 		
 		// Funzione per generare e scaricare un file JSON con i dati presenti nel Local Storage
 		function generateJSON() {
-	    // Carica il JSON esistente
-	    const allData = loadExistingLOG();
-	
-	    // Converte i dati in una stringa JSON
-	    const jsonData = JSON.stringify(allData, null, 2);
-	
-	    // Crea un Blob con i dati JSON
-	    const blob = new Blob([jsonData], {
-	        type: 'application/json'
-	    });
-	
-	    // Crea un link per scaricare il file JSON
-	    const link = document.createElement('a');
-	    link.href = URL.createObjectURL(blob);
-	    link.download = 'timeLog.json'; // Nome del file JSON
-	
-	    // Ritarda l'esecuzione del download
-	    setTimeout(() => {
-	        link.click();
-	    }, 480);
+			// Carica il JSON esistente
+			const allData = loadExistingLOG();
+		
+			// Converte i dati in una stringa JSON
+			const jsonData = JSON.stringify(allData, null, 2);
+		
+			// Crea un Blob con i dati JSON
+			const blob = new Blob([jsonData], {
+				type: 'application/json'
+			});
+		
+			// Crea un link per scaricare il file JSON
+			const link = document.createElement('a');
+			link.href = URL.createObjectURL(blob);
+			link.download = 'timeLog.json'; // Nome del file JSON
+			// Ritarda l'esecuzione del download
+			setTimeout(() => {
+				link.click();
+			}, 480);
 		}
-	
+		
 		// Aggiunge evento al bottone "getlogs-btn"
 		document.getElementById('getlogs-btn').addEventListener('click', function() {
-		    generateJSON(); // Chiamata alla funzione generateJSON
+			generateJSON(); // Chiamata alla funzione generateJSON
 		
-		    this.classList.add('active'); // Aggiunge la classe "active" per mostrare la X
+			this.classList.add('active'); // Aggiunge la classe "active" per mostrare la X
 		
-		    // Imposta un timeout per rimuovere la "X"
-		    setTimeout(() => {
-		        this.classList.remove('active');
-		    }, 460);
+			// Imposta un timeout per rimuovere la "X"
+			setTimeout(() => {
+				this.classList.remove('active');
+			}, 460);
 		});
 		
 		// Attiva getlogs-btn premendo getlogs-btn-external (il tasto esterno)
 		document.getElementById('getlogs-btn-external').addEventListener('click', function() {
-					document.getElementById('getlogs-btn').click();
-				});
-	
+			document.getElementById('getlogs-btn').click();
+		});
+		
 		
 		
 		//************************************************EMPTY LOG IN LOCAL STORAGE******************************************
