@@ -523,7 +523,25 @@
 		#minutes-breakmin::placeholder {
 		    color: #00FF00;
 		}
-
+		
+		#fileInput {
+			position: fixed;
+			justify-content: center; /* Horizontally center */
+			align-items: center;
+			margin-top: 1.6rem;
+			margin-left: -1.5rem;
+			width: 4.95rem;
+    		height: 1.3rem;
+    		justify-content: center; /* Horizontally center */
+    		align-items: center; 
+			transform: translate(-50%, -50%);
+		    z-index: 9999;
+		    opacity: 1; /* Imposta l'opacità per vedere meglio il bordo */
+		    pointer-events: none; /* Disabilita l'interazione inizialmente */
+		    border: 2px solid #00FF00; /* Bordo rosso per visualizzare facilmente la posizione */
+		    box-sizing: border-box; /* Assicura che il bordo venga incluso nel calcolo delle dimensioni */
+		}
+	    
 	</style>
 </head>
 
@@ -651,7 +669,7 @@
 					</td>
 					<td>
 						<button class="external-btns getlogs-btn-external" id="getlogs-btn-external"></button>
-						<input type="file" id="fileInput" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; display: none;" accept=".json" />
+						<input type="file" id="fileInput" style="display: none;" accept=".json" />
 					</td>
 				</tr>
 				<tr>
@@ -2086,7 +2104,7 @@
 		
 		// Aggiungi l'event listener per il cambiamento del file (upload)
 		fileInput.addEventListener('change', loadJSONFile);
-				
+		
 		
 		
 		//************************************************EMPTY LOG IN LOCAL STORAGE******************************************
