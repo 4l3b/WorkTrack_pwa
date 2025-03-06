@@ -2049,38 +2049,6 @@
 		let touchTimer; // To track how long the button is held
 		let isHolding = false; // To track if the button is being held
 		
-		// Event listener for touchstart (on mobile devices) - this replaces mousedown
-		document.getElementById('getlogs-btn-external').addEventListener('touchstart', function() {
-		    // Start the timer when the touch is pressed
-		    isHolding = false; // Reset the state
-		    touchTimer = setTimeout(function() {
-		        isHolding = true; // Mark the button as held after 3 seconds
-		        // Optionally add an "active" state to the external button
-		    }.bind(this), 3000); // 3000 ms = 3 seconds
-		});
-		
-		// Event listener for touchend (on mobile devices) - this replaces mouseup
-		document.getElementById('getlogs-btn-external').addEventListener('touchend', function() {
-		    // Stop the timer when the touch is released
-		    clearTimeout(touchTimer);
-		    if (!isHolding) {
-		        // If the button was tapped (not held), trigger the download (generateJSON)
-		        generateJSON();
-		        
-		        // Add the "active" class to getlogs-btn (not getlogs-btn-external)
-		        const getlogsBtn = document.getElementById('getlogs-btn');
-		        getlogsBtn.classList.add('active'); // This shows the "X"
-		
-		        // Remove the "active" class after 460ms
-		        setTimeout(() => {
-		            getlogsBtn.classList.remove('active');
-		        }, 460);
-		    } else {
-		        // Trigger file input for uploading logs if held for more than 3 seconds
-		        fileInput.click();
-		    }
-		});
-		
 		// Add file input for uploading the logs
 		const fileInput = document.createElement('input');
 		fileInput.type = 'file';
@@ -2090,6 +2058,68 @@
 		
 		// Event listener for file selection (uploading logs)
 		fileInput.addEventListener('change', loadJSONFile);
+		
+		// Detects whether touch events or mouse events should be used based on the device
+		const isTouchDevice = 'ontouchstart' in window || navigator.msMaxTouchPoints > 0;
+		
+		const getlogsBtnExternal = document.getElementById('getlogs-btn-external');
+		
+		// For touchscreen devices (iOS, Android)
+		if (isTouchDevice) {
+		    getlogsBtnExternal.addEventListener('touchstart', function() {
+		        isHolding = false; // Reset state
+		        touchTimer = setTimeout(function() {
+		            isHolding = true; // Mark as holding after 3 seconds
+		        }, 3000); // 3000 ms = 3 seconds
+		    });
+		
+		    getlogsBtnExternal.addEventListener('touchend', function() {
+		        clearTimeout(touchTimer); // Clear the timeout
+		
+		        if (!isHolding) {
+		            // Short tap, trigger the download
+		            generateJSON();
+		
+		            // Add the "active" class to getlogs-btn (not getlogs-btn-external)
+		            const getlogsBtn = document.getElementById('getlogs-btn');
+		            getlogsBtn.classList.add('active'); // This shows the "X"
+		            setTimeout(() => {
+		                getlogsBtn.classList.remove('active');
+		            }, 460);
+		        } else {
+		            // Long press (held for more than 3 seconds), trigger file upload
+		            fileInput.click();
+		        }
+		    });
+		}
+		// For mouse events (desktop)
+		else {
+		    getlogsBtnExternal.addEventListener('mousedown', function() {
+		        isHolding = false; // Reset the state
+		        touchTimer = setTimeout(function() {
+		            isHolding = true; // Mark as holding after 3 seconds
+		        }, 3000); // 3000 ms = 3 seconds
+		    });
+		
+		    getlogsBtnExternal.addEventListener('mouseup', function() {
+		        clearTimeout(touchTimer); // Clear the timeout
+		
+		        if (!isHolding) {
+		            // Short click, trigger the download
+		            generateJSON();
+		
+		            // Add the "active" class to getlogs-btn (not getlogs-btn-external)
+		            const getlogsBtn = document.getElementById('getlogs-btn');
+		            getlogsBtn.classList.add('active'); // This shows the "X"
+		            setTimeout(() => {
+		                getlogsBtn.classList.remove('active');
+		            }, 460);
+		        } else {
+		            // Long press (held for more than 3 seconds), trigger file upload
+		            fileInput.click();
+		        }
+		    });
+		}
 		
 		
 		
