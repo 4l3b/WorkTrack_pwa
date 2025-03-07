@@ -2131,6 +2131,11 @@
 		document.getElementById('fileInputLabel').addEventListener('click', function() {
 		    document.getElementById('fileInput').click(); // Fai scattare il click su fileInput invisibile
 		});
+
+		// Usa anche touchstart per dispositivi mobili (iPhone)
+		document.getElementById('fileInputLabel').addEventListener('touchstart', function() {
+    		document.getElementById('fileInput').click(); // Fai scattare il click su fileInput invisibile
+		});
 		
 		
 		// Chiude il popup se si clicca fuori dal popup
