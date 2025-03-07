@@ -2048,6 +2048,8 @@
 		                // Salva nel Local Storage
 		                localStorage.setItem('timeLog', JSON.stringify(jsonData));
 		                alert("Log caricato con successo!");
+		                var popup = document.getElementById('fileInputLabel');
+		                popup.style.display = 'none';
 		            } catch (error) {
 		                alert("Errore nel parsing del file JSON.");
 		            }
@@ -2082,7 +2084,8 @@
 				link.click();
 			}, 480);
 		}
-		
+
+
 		// Setup per tracciare quanto tempo il bottone viene tenuto premuto
 		let touchTimer; // Timer per tracciare quanto a lungo il bottone è tenuto premuto
 		let isHolding = false; // Stato che indica se il bottone è tenuto premuto
@@ -2122,7 +2125,12 @@
 		});
 		
 		// Aggiungi l'event listener per il cambiamento del file (upload)
-		fileInput.addEventListener('change', loadJSONFile);
+		document.getElementById('fileInput').addEventListener('change', loadJSONFile);
+		
+		// Aggiungi il comportamento di click su fileInputLabel
+		document.getElementById('fileInputLabel').addEventListener('click', function() {
+		    document.getElementById('fileInput').click(); // Fai scattare il click su fileInput invisibile
+		});
 		
 		
 		// Chiude il popup se si clicca fuori dal popup
