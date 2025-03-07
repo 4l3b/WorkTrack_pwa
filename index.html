@@ -526,21 +526,38 @@
 		
 		#fileInput {
 			position: fixed;
-			justify-content: center; /* Horizontally center */
+			justify-content: center;
 			align-items: center;
 			margin-top: 1.6rem;
-			margin-left: -1.5rem;
+			margin-left: 5rem;
 			width: 4.95rem;
     		height: 1.3rem;
-    		justify-content: center; /* Horizontally center */
-    		align-items: center; 
 			transform: translate(-50%, -50%);
 		    z-index: 9999;
-		    opacity: 1; /* Imposta l'opacità per vedere meglio il bordo */
-		    pointer-events: none; /* Disabilita l'interazione inizialmente */
-		    border: 2px solid #00FF00; /* Bordo rosso per visualizzare facilmente la posizione */
-		    box-sizing: border-box; /* Assicura che il bordo venga incluso nel calcolo delle dimensioni */
+		    opacity: 1;
+		    border: 2px solid #00FF00;
+		    border-radius: 5px;
+		    box-sizing: border-box; 
 		}
+		
+		.fileInputLabel {
+		    position: fixed;
+		    top: 41.3%;
+		    left: 50%;
+		    width: 9.5rem;
+		    height: 1.58rem;
+		    transform: translate(-50%, -50%);
+		    text-align: center;
+		    font-size: 14.3px;
+		    letter-spacing: 1px;
+		    padding-top: 0.65rem;
+		    padding-bottom: 0;
+		    background-color: #010101;
+		    color: #00FF00;
+			border: 2px solid #00FF00;
+		    border-radius: 5px;
+		}
+		
 	    
 	</style>
 </head>
@@ -669,7 +686,7 @@
 					</td>
 					<td>
 						<button class="external-btns getlogs-btn-external" id="getlogs-btn-external"></button>
-						<input type="file" id="fileInput" style="display: none;" accept=".json" />
+						<input type="file" id="fileInput" style="display: none;" accept=".json"/>
 					</td>
 				</tr>
 				<tr>
@@ -731,8 +748,10 @@
 			<input type="tel" inputmode="numeric" id="minutes-breakmin" class="time-box" maxlength="2" placeholder="MM">
 		</div>
 	</div>
-
-
+	
+	<div class="fileInputLabel" style="display: none;" id="fileInputLabel">
+		<label for="fileInput">SELECT FILE</label>
+	</div>
 
 	<script>
 			//*****************************************************PWA**************************************************
@@ -2070,10 +2089,10 @@
 		
 		// Seleziona il bottone e l'input file invisibile
 		const getlogsBtnExternal = document.getElementById('getlogs-btn-external');
-		const fileInput = document.getElementById('fileInput');
+		const fileInput = document.getElementById('fileInputLabel');
 		
 		// Aggiungi l'event listener per touchstart (per dispositivi touchscreen)
-		getlogsBtnExternal.addEventListener('touchstart', function() {
+		getlogsBtnExternal.addEventListener('touchstart', function() {							// Usa 'mousedown' per desktop
 		    isHolding = false; // Resetta lo stato
 		    touchTimer = setTimeout(function() {
 		        isHolding = true; // Se viene tenuto premuto per più di 3 secondi
@@ -2082,7 +2101,7 @@
 		});
 		
 		// Aggiungi l'event listener per touchend (per dispositivi touchscreen)
-		getlogsBtnExternal.addEventListener('touchend', function() {
+		getlogsBtnExternal.addEventListener('touchend', function() {								// Usa 'mouseup' per desktop
 		    clearTimeout(touchTimer); // Cancella il timer se il tocco è breve
 		
 		    if (!isHolding) {
@@ -2105,6 +2124,14 @@
 		// Aggiungi l'event listener per il cambiamento del file (upload)
 		fileInput.addEventListener('change', loadJSONFile);
 		
+		
+		// Chiude il popup se si clicca fuori dal popup
+		window.addEventListener('touchstart', function(event) {
+		    var popup = document.getElementById('fileInputLabel');
+		    if (!popup.contains(event.target) && !document.getElementById('getlogs-btn-external').contains(event.target)) {
+		        popup.style.display = 'none';
+		    }
+		});
 		
 		
 		//************************************************EMPTY LOG IN LOCAL STORAGE******************************************
