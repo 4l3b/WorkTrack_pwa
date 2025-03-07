@@ -780,6 +780,17 @@
 			});
 		});
 
+		// Variabili globali
+		var isAutoplayUnlocked = false; // Flag per sapere se l'autoplay è stato sbloccato
+		var alarmSound = document.getElementById('alarm-sound'); // L'elemento audio
+		
+		// Aggiungi un listener di clic per sbloccare l'autoplay
+		document.addEventListener('click', function() {
+		  if (!isAutoplayUnlocked) {
+		    alarmSound.load(); // Carica l'audio
+		    isAutoplayUnlocked = true; // Imposta il flag per l'autoplay
+		  }
+		});
 
 		// Imposta allarme sonoro su nullo di default
 		var alarmInterval = null;
