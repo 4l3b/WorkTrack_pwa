@@ -1,47 +1,45 @@
-**USER GUIDE**
+Welcome to WorkTrack!
+Keep track of your work sessions. Here's how it works.
 
-Welcome to WorkTrack!  
-This is a simple app that allows you to keep track of your work sessions. Here's how it works.
+WORK TIME:
+Enter the length of the work session. Tap the button to insert a default value of 8 hours.
 
+CLOCK IN:
+Enter the clock in time. Tap the button to insert the current time.
 
-WORK TIME:  
-Enter the length of the work session. Click the button to insert a default value of 8 hours.  
+BREAK MIN:
+Enter the expected length of the break. Tap the button to insert a default value of 30 minutes.
 
-CLOCK IN:  
-Enter the clock in time. Click the button to insert the current time.  
+BREAK DONE:
+Check this box when the break is complete. The break duration will be used instead of the Break Min value for the calculation of Clock Out and Time Left.
 
-BREAK MIN:  
-Enter the expected length of the break. Click the button to insert a default value of 30 minutes.
+BREAK START:
+Enter the start time of the break. Tap the button to insert the current time.
 
-BREAK DONE:  
-Check this box when the break is complete. The duration of the break will be used instead of the Break Min value for the calculation of Clock Out and Time Left.
+BREAK END:
+Enter the end time of the break. Tap the button to insert the current time.
 
-BREAK START:  
-Enter the start time of the break. Click the button to insert the current time.
+CLR:
+Clear the current session data.
 
-BREAK END:  
-Enter the end time of the break. Click the button to insert the current time.
+DATETIME:
+Displays the current date (day-month) and time.
 
-CLR:  
-Press to clear the current session data.
+END:
+End the work session early. Work Time will be updated to reflect the actual time worked.
 
-DATETIME:  
-Displays the current date (day-month) and time (24-hour format).
+LOGDEL:
+Delete the app’s memory of previous sessions.
 
-END:  
-Press to end the work session early. Work Time will be updated to reflect the actual time worked.
+GETLOG:
+Download a log file containing the history of work sessions. Press and hold for 3 seconds to upload a log file into the memory.
 
-LOGDEL:  
-Press to delete the app’s memory of previous sessions.
+TIME LEFT:
+When it reaches zero, its value blinks, and a sound alarm plays. Tap the button to stop the blinking and alarm and continue working overtime.
 
-GETLOG:  
-Press to download a log file containing the history of work sessions. Press and hold for 3 seconds to upload a log file into the memory.
+CLOCK OUT:
+When Time Left reaches zero, Clock Out and Work Time will update every second to track overtime work. Tap the Clock Out button to stop the calculation and end the session. You will be prompted to save the session data. Save the data immediately or decline the prompt to modify the Clock Out value before saving. If the Clock Out value is changed, the Work Time value in the log file will be updated accordingly. Tap the Clock Out button again to save the data after modifying the Clock Out value.
 
-TIME LEFT:  
-When Time Left reaches zero, its value blinks, and a sound alarm plays. Press the button to stop the blinking and alarm and continue working overtime.
-
-CLOCK OUT:  
-When Time Left reaches zero, Clock Out and Work Time will update every second to track overtime work. Press the Clock Out button to stop the calculation and end the session. The alarm and blinking of Time Left will stop if still active, and you will be prompted to save the session data. Save the data immediately or decline the prompt to modify the Clock Out value before saving. If you change the Clock Out, the Work Time value in the log file will be updated accordingly. Press the Clock Out button again to save the data after modifying the Clock Out value.
-
-License: "WorkTrack" by Alessandro Bigolin [CC-BY-NC-SA-4.0] [LICENSE](./LICENSE)  
-Original icon: "clockwork" by Bruno Heridet [CC-BY-3.0]
+WorkTrack © 2025 by Alessandro Bigolin - [CC BY-NC-SA 4.0].
+Original icon by Bruno Heridet - [CC BY 3.0].
+LICENSE file: [https://github.com/4l3b/WorkTrack/blob/main/LICENSE].
