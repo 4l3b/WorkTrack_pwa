@@ -306,8 +306,7 @@
 		.clockin-btn-popup,
 		.breakstart-btn-popup,
 		.breakend-btn-popup,
-		.breakmin-btn-popup,
-		.info-btn-popup {
+		.breakmin-btn-popup {
 			background-color: #010101;
 			color: #00FF00;
 			opacity: 0;
@@ -334,12 +333,6 @@
 		
 		.breakmin-btn-popup {
 			width: 70px;
-		}
-
-		.info-btn-popup {
-			width: 7.5rem;
-			margin-top: 0.35rem;
-			margin-left: -3.8rem;
 		}
 
 		/* Rimuovi l'icona dell'orologio nei campi di input di tipo time */
@@ -485,6 +478,27 @@
 		.date-btn {
 			margin-top: 1.35rem;
 		}
+
+		.info-btn-popup {
+		    width: 15px;
+		    height: 15px;
+		    margin-top: 0.5rem;
+		    margin-left: 0.8rem;
+		    background-color: #010101;
+			border-left: 0.8px solid #00FF00;
+			border-right: 0.8px solid #00FF00;
+			border-bottom: 0.8px solid #00FF00;
+			border-top: 0.8px solid #00FF00;
+			border-radius: 50%;
+			cursor: pointer;
+			z-index: 3 !important;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    font-size: 14.1px;
+			font-family: 'Courier New', monospace;
+		    color: #00FF00;
+		}
 		
 		/* Popup nascosto di default */
 		.popup {
@@ -586,7 +600,9 @@
 						<p style='margin-bottom: 5%;'>WORKTRACK</p>
 						<button class="info-btn-popup" id="info-btn-popup"></button>
 					</td>
-					<td></td>
+					<td>
+						<button class="info-btn-popup" id="info-btn-popup">i</button>
+					</td>
 				</tr>
 				<tr>
 					<td>
