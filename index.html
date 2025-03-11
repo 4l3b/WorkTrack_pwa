@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<base href="/WorkTime_pwa/">
+	<base href="/WorkTrack_pwa/">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
@@ -723,7 +723,7 @@
 			</tbody>
 		</table>
 	</div>
-	<audio id="alarm-sound" src="/WorkTime_pwa/alarm.mp3" preload="auto"></audio>
+	<audio id="alarm-sound" src="/WorkTrack_pwa/alarm.mp3" preload="auto"></audio>
 
 
 	<div id="popup-worktime" class="popup" style="display: none;">
@@ -773,7 +773,7 @@
 			//*****************************************************PWA**************************************************
 		  if ('serviceWorker' in navigator) {
 		    window.addEventListener('load', () => {
-		      navigator.serviceWorker.register('/WorkTime_pwa/service-worker.js')
+		      navigator.serviceWorker.register('/WorkTrack_pwa/service-worker.js')
 		        .then((registration) => {
 		          console.log('Service Worker registrato con successo:', registration);
 		        })
