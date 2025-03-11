@@ -42,4 +42,4 @@ When Time Left reaches zero, Clock Out and Work Time will update every second to
 
 WorkTrack © 2025 by Alessandro Bigolin - [CC BY-NC-SA 4.0].  
 Original icon by Bruno Heridet - [CC BY 3.0].  
-LICENSE file: [https://github.com/4l3b/WorkTrack/blob/main/LICENSE].
+LICENSE file: [https://github.com/4l3b/WorkTrack_pwa/blob/main/LICENSE].
