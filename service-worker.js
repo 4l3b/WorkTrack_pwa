@@ -6,6 +6,7 @@ self.addEventListener('install', (event) => {
         '/workTimeCalculator_iOS/index.html',
         '/workTimeCalculator_iOS/manifest.json',
         '/workTimeCalculator_iOS/alarm.mp3',
+        '/workTimeCalculator_iOS/README.md',
         '/workTimeCalculator_iOS/icons/icon-180x180.png',
         '/workTimeCalculator_iOS/icons/icon-192x192.png',
         '/workTimeCalculator_iOS/icons/icon-512x512.png',
