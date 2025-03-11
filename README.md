@@ -2,7 +2,7 @@ Welcome to WorkTrack!
 Keep track of your work sessions. Here's how it works.
 
 WORK TIME:
-Enter the length of the work session. Tap the button to insert a default value of 8 hours.
+Enter the length of your work session. Tap the button to insert a default value of 8 hours.
 
 CLOCK IN:
 Enter the clock in time. Tap the button to insert the current time.
