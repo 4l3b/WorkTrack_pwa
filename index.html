@@ -306,7 +306,8 @@
 		.clockin-btn-popup,
 		.breakstart-btn-popup,
 		.breakend-btn-popup,
-		.breakmin-btn-popup {
+		.breakmin-btn-popup,
+		.info-btn-popup {
 			background-color: #010101;
 			color: #00FF00;
 			opacity: 0;
@@ -333,6 +334,12 @@
 		
 		.breakmin-btn-popup {
 			width: 70px;
+		}
+
+		.info-btn-popup {
+			width: 7.5rem;
+			margin-top: 0.35rem;
+			margin-left: -3.8rem;
 		}
 
 		/* Rimuovi l'icona dell'orologio nei campi di input di tipo time */
@@ -577,6 +584,7 @@
 					<td></td>
 					<td colspan="2" style="text-align: center; vertical-align: middle; font-size: 20px;">
 						<p style='margin-bottom: 5%;'>WORKTRACK</p>
+						<button class="info-btn-popup" id="info-btn-popup"></button>
 					</td>
 					<td></td>
 				</tr>
@@ -771,6 +779,25 @@
 		        });
 		    });
 		  };
+
+
+		
+		//*****************************************************README POPUP**************************************************
+		  function openReadMe() {
+			  fetch('README.md')  // Fetch the markdown file
+				  .then(response => response.text())  // Get text content
+				  .then(data => {
+					  alert(data); 
+				  })
+				  .catch(error => {
+					  console.error('Error fetching README.md:', error);
+					  alert('Could not open README.md: ' + error.message);
+				  });
+		  }
+		
+			document.getElementById('info-btn-popup').addEventListener('click', function() {
+				openReadMe();
+			});
 
 
 		
