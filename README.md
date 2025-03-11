@@ -37,9 +37,9 @@ Download a log file containing the history of work sessions. Press and hold for 
 TIME LEFT:
 When it reaches zero, its value blinks, and a sound alarm plays. Tap the button to stop the blinking and alarm and continue working overtime.
 
-CLOCK OUT:
-When Time Left reaches zero, Clock Out and Work Time will update every second to track overtime work. Tap the Clock Out button to stop the calculation and end the session. You will be prompted to save the session data. Save the data immediately or decline the prompt to modify the Clock Out value before saving. If the Clock Out value is changed, the Work Time value in the log file will be updated accordingly. Tap the Clock Out button again to save the data after modifying the Clock Out value.
+CLOCK OUT:  
+When Time Left reaches zero, Clock Out and Work Time will update every second to track overtime work. Tap the Clock Out button to stop the calculation and end the session. You will be prompted to save the session data. You can either save the data immediately or decline the prompt to modify the Clock Out value before saving. If the Clock Out value is modified, the Work Time value in the log file will be adjusted accordingly. Tap the Clock Out button again to save the data after modifying the Clock Out value.
+
 
 WorkTrack © 2025 by Alessandro Bigolin - [CC BY-NC-SA 4.0].  
-Original icon by Bruno Heridet - [CC BY 3.0].  
-LICENSE file: [https://github.com/4l3b/WorkTrack_pwa/blob/main/LICENSE].
+See LICENSE file: [https://github.com/4l3b/WorkTrack/blob/main/LICENSE].
