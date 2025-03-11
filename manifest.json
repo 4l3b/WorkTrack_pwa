@@ -2,7 +2,7 @@
   "name": "WorkTrack",
   "short_name": "WorkTrack",
   "description": "A tool to calculate Clock Out and Time Left",
-  "start_url": "/workTimeCalculator_iOS/index.html",
+  "start_url": "/WorkTrack_pwa/index.html",
   "display": "standalone",
   "background_color": "#010101",
   "theme_color": "#009900",
