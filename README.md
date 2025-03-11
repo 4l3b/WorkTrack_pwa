@@ -1,17 +1,18 @@
 # Welcome to WorkTrack!
 This is a simple app that allows you to keep track of your work sessions. Here's how it works.
 
+#
 
 # INSTALLATION:
-
 Go to the website https://4l3b.github.io/workTimeCalculator_iOS/ in Safari. Tap the “Share" button and choose "Add to Home Screen" from the options. Finally, tap “Add" in the top right corner to complete the PWA installation.
 
+# 
 
 # USER GUIDE:
-
 WORK TIME:
 
 Enter the length of the work session. Click the button to insert a default value of 8 hours.
+# 
 
 CLOCK IN:
 
