@@ -1,4 +1,4 @@
-**Welcome to WorkTrack!**
+# Welcome to WorkTrack!
 
 This is a simple app that allows you to keep track of your work sessions. Here's how it works.
 #
@@ -10,14 +10,13 @@ Go to the website https://4l3b.github.io/workTimeCalculator_iOS/ in Safari. Tap 
 
 **USER GUIDE:**
 
-WORK TIME:
-
+WORK TIME:  
 Enter the length of the work session. Click the button to insert a default value of 8 hours.
 # 
 
-CLOCK IN:
-
+CLOCK IN:  
 Enter the clock-in time. Click the button to insert the current time.
+#
 
 BREAK MIN:
 
