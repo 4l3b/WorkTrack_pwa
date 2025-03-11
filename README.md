@@ -1,10 +1,11 @@
-Welcome to WorkTrack!  
-This is a simple app that allows you to keep track of your work sessions. Here's how it works.
+Welcome to WorkTrack!
+
+This is a simple PWA that allows you to keep track of your work sessions. Here's how it works.
 
 
 **INSTALLATION**
 
-Tap the “Share" button and select "Add to Home Screen" from the options. Finally, tap “Add" in the top right corner to complete the PWA installation.
+Tap the “Share" button and select "Add to Home Screen" from the options. Finally, tap “Add" in the top right corner.
 
 
 **USER GUIDE**
@@ -40,7 +41,7 @@ LOGDEL:
 Press to delete the app’s memory of previous sessions.
 
 GETLOG:  
-Press to download a log file containing the history of work sessions. Press and hold for 3 seconds to upload a log file into the memory.
+Press to download a log file containing the history of sessions. Press and hold for 3 seconds to upload a log file into the memory.
 
 TIME LEFT:  
 When Time Left reaches zero, its value blinks, and a sound alarm plays. Press the button to stop the blinking and alarm and continue working overtime.
