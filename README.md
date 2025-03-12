@@ -28,11 +28,11 @@ Displays the current date (day-month) and time.
 END:
 End the work session early. Work Time will be updated to reflect the actual time worked.
 
-LOGDEL:
-Clear the app’s history of previous sessions.
-
 GETLOG:
 Download a log file containing the history of work sessions. To upload a log file into the memory, press and hold for 3 seconds.
+
+LOGDEL:
+Clear the app’s history of previous sessions.
 
 TIME LEFT:
 When it reaches zero, the value will blink, and a sound alarm will play. Tap the button to stop the blinking and alarm and continue working overtime.
