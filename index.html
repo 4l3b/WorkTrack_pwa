@@ -1160,6 +1160,16 @@
 		});
 
 
+		// Blocca lo scroll quando si chiude la tastiera
+		window.addEventListener("blur", () => {
+  			setTimeout(() => {
+    			window.scrollTo(0, 0);
+    			document.body.style.overflow = "hidden";
+  				document.body.style.height = "100vh";
+  			}, 100);
+		});
+
+
 
 		//*****************************************************OTTIENI DATA E ORA ATTUALE*****************************************************
 		function updateTime() {
