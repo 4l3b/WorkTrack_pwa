@@ -1162,32 +1162,6 @@
 		});
 
 
-		function fixIOSScroll() {
-		  setTimeout(() => {
-		    window.scrollTo(0, 0);
-		    document.documentElement.style.height = "100%";
-		    document.documentElement.style.overflow = "hidden";
-		    document.body.style.position = "fixed";
-		    document.body.style.top = "0";
-		    document.body.style.left = "0";
-		    document.body.style.width = "100vw";
-		    document.body.style.height = window.innerHeight = "px";
-		    document.body.style.overflow = "hidden";
-		  }, 100);
-		}
-		// Quando la tastiera si chiude (blur), applica la correzione
-		window.addEventListener("blur", fixIOSScroll);
-		// Quando torni alla PWA (focus), riporta tutto normale
-		window.addEventListener("focus", () => {
-		  document.documentElement.style.height = "";
-		  document.documentElement.style.overflow = "";
-		  document.body.style.position = "";
-		  document.body.style.width = "";
-		  document.body.style.height = "";
-		  document.body.style.overflow = "";
-		});
-
-
 
 		//*****************************************************OTTIENI DATA E ORA ATTUALE*****************************************************
 		function updateTime() {
