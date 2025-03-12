@@ -42,5 +42,6 @@ When Time Left reaches zero, Clock Out and Work Time will update every second to
 
 Happy work sessions!
 
+
 WorkTrack © 2025 by Alessandro Bigolin - [CC BY-NC-SA 4.0].  
 See LICENSE file: [https://github.com/4l3b/WorkTrack_pwa/blob/main/LICENSE].
