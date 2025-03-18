@@ -576,6 +576,98 @@
 		    border-radius: 5px;
 		}
 		
+		/* Stili per il modal */
+		.modal {
+		  display: none;
+		  position: fixed;
+		  z-index: 1;
+		  left: 0;
+		  top: 0;
+		  width: 100%;
+		  height: 100%;
+		  overflow: auto;
+		  background-color: rgba(0, 0, 0, 0.4);
+		}
+		
+		.modal-content {
+		  position: relative;
+		  background-color: #010101;
+		  color: #00FF00;
+		  font-family: 'Courier New', monospace;
+		  margin: 10% auto;
+		  padding: 2rem;
+		  width: 80%;
+		  max-width: 600px;
+		  height: 400px;
+		  overflow: hidden; /* Nasconde lo scroll sulla finestra modale */
+		  max-height: 80vh;
+		  border: 3.5px solid #77858C;
+		  border-collapse: collapse;
+		  box-shadow: 0px 0px 1px #77858C;
+		  border-radius: 20px;
+		  display: flex;
+		  flex-direction: column;
+		}
+		
+		.close {
+		  position: sticky;
+		  top: 0;
+		  align-self: flex-end;
+		  color: #00FF00;
+		  font-size: 28px;
+		  font-weight: bold;
+		  z-index: 1;
+		}
+		
+		.close:active {
+		  color: darkred;
+		  transform: scale(0.9);
+		}
+		
+		.close:hover,
+		.close:focus {
+		  color: #00FF00;
+		  text-decoration: none;
+		  cursor: pointer;
+		}
+		
+		.modalLink {
+		  text-decoration: none;
+		  color: inherit;
+		  word-wrap: break-word;
+		  overflow-wrap: break-word;
+		}
+		
+		.modal-body {
+		  overflow-y: auto; /* Abilita lo scroll solo sul contenuto */
+		  margin-top: 20px; /* Fa sì che il testo scompaia prima della x */
+		  padding-right: 1rem;
+		  flex-grow: 1;
+		}
+		
+		/* Stile per la barra di scorrimento */
+		.modal-body::-webkit-scrollbar {
+		  width: 12px; /* Larghezza della barra verticale */
+		}
+		
+		/* Traccia della barra (sfondo) */
+		.modal-body::-webkit-scrollbar-track {
+		  background: #333; 
+		  border-radius: 10px;
+		}
+		
+		/* Pollice della barra (parte che si sposta) */
+		.modal-body::-webkit-scrollbar-thumb {
+		  background-color: #00FF00; 
+		  border-radius: 10px;
+		  border: 3px solid #333; 
+		  transition: background-color 0.3s ease;
+		}
+		
+		/* Fine del pollice */
+		.modal-body::-webkit-scrollbar-corner {
+		  background: #333;
+		}
 	    
 	</style>
 </head>
@@ -726,6 +818,63 @@
 			</tbody>
 		</table>
 	</div>
+	
+		<div id="myModal" class="modal">
+		  <div class="modal-content">
+		    <span class="close">&times;</span>
+		    <div class="modal-body">
+		    <h3>Welcome to WorkTrack!</h3>
+		    <p>Keep track of your work sessions. Here's how it works.</p>
+		
+			<p>WORK TIME:<br>
+			Enter the length of your work session. Click the button to set a default value of 8 hours.</p>
+			
+			<p>CLOCK IN:<br>
+			Enter the clock in time. Click the button to insert the current time.  </p>
+			
+			<p>BREAK MIN:<br>
+			Enter the expected length of your break. Click the button to set a default value of 30 minutes.</p>
+			
+			<p>BREAK START:<br> 
+			Enter the start time of your break. Click the button to insert the current time.</p>
+			
+			<p>BREAK END:<br>
+			Enter the end time of your break. Click the button to insert the current time.</p>
+			
+			<p>BREAK DONE:<br>
+			Check this box when your break is complete. The break duration will be used instead of the Break Min value to calculate Clock Out and Time Left.</p>
+			
+			<p>CLR:<br>
+			Clear the current session data.</p>
+			
+			<p>DATETIME:<br>
+			Displays the current date (day-month) and time.</p>
+			
+			<p>END:<br>
+			End the work session early. Work Time will be updated to reflect the actual time worked.</p>
+			
+			<p>GETLOG:<br>
+			Download a log file containing the history of work sessions. To upload a log file into the memory, press and hold for 3 seconds.</p>
+			
+			<p>LOGDEL:<br>
+			Clear the app's history of previous sessions.</p>
+			
+			<p>TIME LEFT:<br>
+			When it reaches zero, the value will blink, and a sound alarm will play. Click the button to stop the blinking and alarm and continue working overtime.</p>
+			
+			<p>CLOCK OUT:<br>
+			When Time Left reaches zero, Clock Out and Work Time will update every second to track overtime work. Click the Clock Out button to stop the calculation and end the session. A button will appear allowing you to save the session data. You can save the data immediately or modify the Clock Out value before saving. If you modify the Clock Out value, the Work Time value in the log file will be adjusted accordingly.</p>
+			
+			<p>Happy work sessions!</p>
+			
+			<p>WorkTrack © 2025 by Alessandro Bigolin - [<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" class="modalLink">CC BY-NC-SA 4.0</a>].<br>
+			See LICENSE file:<br>
+			[<a href="https://github.com/4l3b/WorkTrack/blob/main/LICENSE" target="_blank" class="modalLink">https://github.com/4l3b/WorkTrack/blob/main/LICENSE</a>].
+			</p>
+		  </div>
+		  </div>
+		</div>
+		
 	<audio id="alarm-sound" src="/WorkTrack_pwa/alarm.mp3" preload="auto"></audio>
 
 
@@ -789,21 +938,25 @@
 
 		
 		//*****************************************************README POPUP**************************************************
-		  function openReadMe() {
-			  fetch('README.md')  // Fetch the markdown file
-				  .then(response => response.text())  // Get text content
-				  .then(data => {
-					  alert(data); 
-				  })
-				  .catch(error => {
-					  console.error('Error fetching README.md:', error);
-					  alert('Could not open README.md: ' + error.message);
-				  });
-		  }
-		
-			document.getElementById('info-btn-popup').addEventListener('click', function() {
-				openReadMe();
-			});
+		  document.getElementById('info-btn-popup').addEventListener('click', function() {
+		      var modal = document.getElementById("myModal");
+		      var btn = this;
+		      var span = document.getElementsByClassName("close")[0];
+		      
+		      modal.style.display = "block";
+		      
+		      // Chiudi il modal quando clicchi sulla X
+		      span.onclick = function() {
+		          modal.style.display = "none";
+		      }
+		      
+		      // Chiudi il modal quando clicchi fuori dal contenuto
+		      window.onclick = function(event) {
+		          if (event.target == modal) {
+		              modal.style.display = "none";
+		          }
+		      }
+		  });
 
 
 		
