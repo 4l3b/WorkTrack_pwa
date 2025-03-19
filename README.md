@@ -10,14 +10,14 @@ Enter the clock in time. Tap the button to insert the current time.
 BREAK MIN:
 Enter the expected length of your break. Tap the button to set a default value of 30 minutes.
 
-BREAK DONE:
-Check this box when your break is complete. The break duration will be used instead of the Break Min value to calculate Clock Out and Time Left.
-
 BREAK START:
 Enter the start time of your break. Tap the button to insert the current time.
 
 BREAK END:
 Enter the end time of your break. Tap the button to insert the current time.
+
+BREAK DONE:
+Check this box when your break is complete. The break duration will be used instead of the Break Min value to calculate Clock Out and Time Left.
 
 CLR:
 Clear the current session data.
