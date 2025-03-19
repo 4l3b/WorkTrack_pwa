@@ -641,30 +641,16 @@
 		  margin-top: 0rem; /* Fa sì che il testo scompaia prima della x */
 		  padding-right: 1rem;
 		  flex-grow: 1;
+		  webkit-overflow-scrolling: touch; /* Migliora lo scorrimento su iOS */
+			
+		  /* Nasconde la barra di scorrimento */
+		  scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* IE 10+ */
 		}
 		
 		/* Stile per la barra di scorrimento */
 		.modal-body::-webkit-scrollbar {
-		  width: 12px; /* Larghezza della barra verticale */
-		}
-		
-		/* Traccia della barra (sfondo) */
-		.modal-body::-webkit-scrollbar-track {
-		  background: #333; 
-		  border-radius: 10px;
-		}
-		
-		/* Pollice della barra (parte che si sposta) */
-		.modal-body::-webkit-scrollbar-thumb {
-		  background-color: #00FF00; 
-		  border-radius: 10px;
-		  border: 3px solid #333; 
-		  transition: background-color 0.3s ease;
-		}
-		
-		/* Fine del pollice */
-		.modal-body::-webkit-scrollbar-corner {
-		  background: #333;
+		  display: none; /* Nasconde la barra di scorrimento su Chrome, Safari, Opera */
 		}
 	    
 	</style>
