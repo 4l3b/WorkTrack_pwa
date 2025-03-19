@@ -1679,6 +1679,15 @@
 					field.valueAsDate = null; // Resetta il campo time
 				}
 			});
+
+			// Resetta i valori per input di tipo text
+			const timeFields = ['work-time', 'clock-in', 'duratamin-pausa', 'inizio-pausa', 'fine-pausa'];
+			timeFields.forEach(function(fieldId) {
+				const field = document.getElementById(fieldId);
+				if (field) {
+					field.value = ''; // Resetta il campo indipendentemente dal tipo
+				}
+			});
 		
 			// Rimuovi la classe blink dal countdown e resetta il timer
 			var countdownElement = document.getElementById('countdown');
