@@ -977,31 +977,80 @@
 		// Popup Work Time
 		document.getElementById('worktime-btn-popup').addEventListener('click', function() {
 		    var popup = document.getElementById('popup-worktime');
+			
+			// Reset dei valori
+		    hoursWorktimeInput.value = "";
+		    minutesWorktimeInput.value = "";
+		    secondsWorktimeInput.value = "";
+			
 		    popup.style.display = 'block';
+
+			// Impedisce che il campo dei secondi sia attivato riaprendo il popup
+			secondsWorktimeInput.focus();
+		    secondsWorktimeInput.blur();
 		});
 		
 		// Popup Clock In
 		document.getElementById('clockin-btn-popup').addEventListener('click', function() {
 		    var popup = document.getElementById('popup-clockin');
-		    popup.style.display = 'block';
+		    
+			// Reset dei valori
+		    hoursClockinInput.value = "";
+		    minutesClockinInput.value = "";
+		    secondsClockinInput.value = "";
+		
+		    popupClockin.style.display = 'block';
+
+			// Impedisce che il campo dei secondi sia attivato riaprendo il popup
+			secondsClockinInput.focus();
+		    secondsClockinInput.blur();
 		});
 		
 		// Popup Break Start
 		document.getElementById('breakstart-btn-popup').addEventListener('click', function() {
 		    var popup = document.getElementById('popup-breakstart');
+			
+			// Reset dei valori
+		    hoursBreakstartInput.value = "";
+		    minutesBreakstartInput.value = "";
+		    secondsBreakstartInput.value = "";
+			
 		    popup.style.display = 'block';
+
+			// Impedisce che il campo dei secondi sia attivato riaprendo il popup
+			secondsBreakstartInput.focus();
+		    secondsBreakstartInput.blur();
 		});
 		
 		// Popup Break End
 		document.getElementById('breakend-btn-popup').addEventListener('click', function() {
 		    var popup = document.getElementById('popup-breakend');
+			
+			// Reset dei valori
+		    hoursBreakendInput.value = "";
+		    minutesBreakendInput.value = "";
+		    secondsBreakendInput.value = "";
+			
 		    popup.style.display = 'block';
+
+			// Impedisce che il campo dei secondi sia attivato riaprendo il popup
+			secondsBreakendInput.focus();
+		    secondsBreakendInput.blur();
 		});
 		
 		// Popup Break Min
 		document.getElementById('breakmin-btn-popup').addEventListener('click', function() {
 		    var popup = document.getElementById('popup-breakmin');
+			
+			// Reset dei valori
+		    hoursBreakminInput.value = "";
+		    minutesBreakminInput.value = "";
+			
 		    popup.style.display = 'block';
+
+			// Impedisce che il campo dei minuti sia attivato riaprendo il popup
+			minutesBreakminInput.focus();
+		    minutesBreakminInput.blur();
 		});
 		
 		
