@@ -28,12 +28,12 @@ This is the mobile PWA version of [**WorkTrack**](https://github.com/4l3b/WorkTr
 {
   "16-09-2025": [
     {
-      "clockIn": "08:04:23",
-      "clockOut": "16:33:43",
-      "workTime": "08:00:01",
-      "breakStart": "13:17:55",
-      "breakEnd": "13:47:14",
-      "breakTime": "00:29:19"
+      "clockIn": "08:00:00",
+      "clockOut": "16:38:36",
+      "workTime": "08:00:00",
+      "breakStart": "14:21:24",
+      "breakEnd": "15:00:00",
+      "breakTime": "00:38:36"
     }
   ]
 }
