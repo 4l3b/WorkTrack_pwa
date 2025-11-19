@@ -31,7 +31,7 @@ This is the mobile PWA version of [**WorkTrack**](https://github.com/4l3b/WorkTr
 
 ## Usage
 
-Go to the [GitHub Pages site](https://4l3b.github.io/WorkTrack_pwa/) on your mobile device and save the page to your home screen for quick access and offline use. Instructions for logging work sessions, tracking breaks, and exporting/importing JSON logs are available within the interface.
+Go to the [GitHub Pages site](https://4l3b.github.io/WorkTrack_pwa/) on your mobile device and save the page to your home screen for quick access and offline use. Instructions for usage are available within the interface.
 
 ---
 
