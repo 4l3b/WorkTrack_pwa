@@ -26,7 +26,7 @@ This is the mobile PWA version of [**WorkTrack**](https://github.com/4l3b/WorkTr
 **Example JSON log output (DD-MM-YYYY, 24h):**
 ```json
 {
-  "16-01-2025": [
+  "16-09-2025": [
     {
       "clockIn": "08:04:23",
       "clockOut": "16:33:43",
