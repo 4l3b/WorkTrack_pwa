@@ -13,6 +13,7 @@ This is the mobile PWA version of [**WorkTrack**](https://github.com/4l3b/WorkTr
   - Expected clock-out time
   - Remaining time in the workday
 - Adjusts calculations if:
+  - Actual break duration differs from the planned break
   - A session ends early
   - Work continues into overtime
 - Stores session data locally, so it persists across page reloads
@@ -21,6 +22,22 @@ This is the mobile PWA version of [**WorkTrack**](https://github.com/4l3b/WorkTr
   - Upload a previous log
   - Clear stored data
 - Cockpit-style UI modeled after the Flight Management Computer of the iconic McDonnell Douglas MD-11 aircraft
+
+Example JSON log output (DD-MM-YYYY, 24h):
+```json
+{
+  "16-01-2025": [
+    {
+      "clockIn": "08:04:23",
+      "clockOut": "16:33:43",
+      "workTime": "08:00:01",
+      "breakStart": "13:17:55",
+      "breakEnd": "13:47:14",
+      "breakTime": "00:29:19"
+    }
+  ]
+}
+```
 
 ---
 
