@@ -2,7 +2,7 @@
 
 This is the mobile PWA version of [**WorkTrack**](https://github.com/4l3b/WorkTrack), a browser-based tool for recording daily work sessions.
 
-![WorkTrack PWA Interface](worktrack_pwa.png)
+<img src="worktrack_pwa.png" alt="WorkTrack PWA interface" width="50%">
 
 ---
 
