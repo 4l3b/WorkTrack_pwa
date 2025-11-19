@@ -1,47 +1,40 @@
-Welcome to WorkTrack!
-Keep track of your work sessions. Here's how it works.
+# WorkTrack
 
-WORK TIME:
-Enter the length of your work session. Tap the button to set a default value of 8 hours.
+This is the mobile PWA version of [**WorkTrack**](https://github.com/4l3b/WorkTrack), a browser-based tool for recording daily work sessions.
 
-CLOCK IN:
-Enter the clock in time. Tap the button to insert the current time.
+---
 
-BREAK MIN:
-Enter the expected length of your break. Tap the button to set a default value of 30 minutes.
+## Features
 
-BREAK START:
-Enter the start time of your break. Tap the button to insert the current time.
+- Log clock-in time, expected work duration, and expected break duration
+- Calculates:
+  - Expected clock-out time
+  - Remaining time in the workday
+- Adjusts calculations if:
+  - A session ends early
+  - Work continues into overtime
+- Stores session data locally, so it persists across page reloads
+- JSON export/import:
+  - Download a log of your work history
+  - Upload a previous log
+  - Clear stored data
 
-BREAK END:
-Enter the end time of your break. Tap the button to insert the current time.
+---
 
-BREAK DONE:
-Check this box when your break is complete. The break duration will be used instead of the Break Min value to calculate Clock Out and Time Left.
+## Tech Stack
 
-CLR:
-Clear the current session data.
+- **HTML**: Structure
+- **CSS**: Styling
+- **JavaScript**: Time calculations, data storage, and JSON export/import
 
-DATE/TIME:
-Displays the current date (dd/mm) and time (24h).
+---
 
-END:
-End the work session early. Work Time will be updated to reflect the actual time worked.
+## Usage
 
-GETLOG:
-Download a log file containing the history of work sessions. To upload a log file into the memory, press and hold for 3 seconds.
+Go to the [GitHub Pages site](https://4l3b.github.io/WorkTrack_pwa/) on your mobile device and save the page to your home screen for quick access and offline use. Instructions for logging work sessions, tracking breaks, and exporting/importing JSON logs are available within the interface.
 
-LOGDEL:
-Clear the app’s history of previous sessions.
+---
 
-TIME LEFT:
-When it reaches zero, the value will blink, and a sound alarm will play. Tap the button to stop the blinking and alarm and continue working overtime.
+WorkTrack © 2025 by Alessandro Bigolin - [CC BY-NC-SA 4.0].
 
-CLOCK OUT:  
-When Time Left reaches zero, Clock Out and Work Time will update every second to track overtime work. Tap the Clock Out button to stop the calculation and end the session. You will be prompted to save the session data. You can save the data immediately or decline the prompt to adjust the Clock Out time before saving. If you modify the Clock Out time, the Work Time in the log file will adjust accordingly. Tap the Clock Out button again to save the updated data.
-
-Happy work sessions!
-
-
-WorkTrack © 2025 by Alessandro Bigolin - [CC BY-NC-SA 4.0].  
 See LICENSE file: [https://github.com/4l3b/WorkTrack_pwa/blob/main/LICENSE].
