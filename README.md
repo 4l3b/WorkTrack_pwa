@@ -1,6 +1,6 @@
 # WorkTrack
 
-This is the mobile PWA version of [**WorkTrack**](https://github.com/4l3b/WorkTrack), a browser-based tool for recording daily work sessions.
+This is the mobile PWA version of [**WorkTrack**](https://github.com/4l3b/WorkTrack), a browser-based tool for recording daily work sessions with a cockpit-style UI modeled after the Flight Management Computer of the iconic McDonnell Douglas MD-11 aircraft.
 
 <img src="worktrack_pwa.png" alt="WorkTrack PWA interface" width="30%">
 
